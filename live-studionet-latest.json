@@ -1,0 +1,201 @@
+{
+  "generatedAt": "2026-10-17T07:30:10.945Z",
+  "contractAddress": "0x4a79710A4B739698E929b31363720A39834Fb99c",
+  "vaultId": 0,
+  "goodProposalId": 0,
+  "badProposalId": 1,
+  "passed": true,
+  "records": [
+    {
+      "label": "initial-read-counts",
+      "vaultCount": 0,
+      "proposalCount": 0,
+      "principal": "0xA6955940de7CBa1b7155245e7C695093261fBBC0",
+      "operator": "0xD2674bc0A4F386EF71E874413D8f172608d76cCe",
+      "recipient": "0xd40204e290b887644cb1f181d84b783e5ad281da"
+    },
+    {
+      "label": "create-vault",
+      "hash": "0x61cf9ed61077770c7b2807355f12a4c0fa49603fbd0e39e29cb2ddd7415e4442",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "after-create-get-vault",
+      "vaultId": 0,
+      "vault": {
+        "available_budget": 3,
+        "budget": 3,
+        "closed_at": "",
+        "created_at": "2026-10-17T07:27:51.828810+00:00",
+        "evidence_policy_json": "{\"required\":[\"a public HTTPS deliverable\",\"an identified supplier\",\"an invoice reference\",\"specific technical scope or findings\"],\"accepted_host\":\"raw.githubusercontent.com/Hilda26/mandate-vault\",\"reject_if\":[\"the evidence describes marketing or an event\",\"the evidence does not describe completed technical work\",\"the evidence contradicts the proposal purpose\"]}",
+        "expires_at": "2026-10-17T08:27:51.828810+00:00",
+        "id": 0,
+        "mandate_json": "{\"name\":\"MandateVault security-work budget\",\"objective\":\"Pay for completed independent security review work that directly benefits the MandateVault GenLayer Intelligent Contract.\",\"prohibited\":[\"marketing\",\"advertising\",\"event sponsorship\",\"travel\",\"general-purpose hardware\"],\"conditions\":[\"the public evidence must identify MandateVault\",\"the work must be completed rather than merely proposed\",\"the evidence must state supplier and invoice\",\"the deliverable must describe reviewed technical scope or findings\"]}",
+        "mandate_version": 1,
+        "operator": "0xD2674bc0A4F386EF71E874413D8f172608d76cCe",
+        "per_action_limit": 2,
+        "principal": "0xA6955940de7CBa1b7155245e7C695093261fBBC0",
+        "proposal_bond": 1,
+        "proposal_ttl_seconds": 1800,
+        "reserved": 0,
+        "spent": 0,
+        "state": "ACTIVE"
+      }
+    },
+    {
+      "label": "submit-compliant-proposal",
+      "hash": "0x84994177e17008a5dd4a3902c4e524f5838608db4c31c857de10311bc7ee4319",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "after-good-submit",
+      "proposalId": 0,
+      "proposal": {
+        "amount": 2,
+        "bond": 1,
+        "evidence_json": "{\"primary_url\":\"https://raw.githubusercontent.com/Hilda26/mandate-vault/main/live-evidence/compliant-security-review.md\",\"supplier\":\"Cipher Review Collective\",\"invoice\":\"MV-2026-1017\",\"public\":true}",
+        "evidence_policy_snapshot_json": "{\"required\":[\"a public HTTPS deliverable\",\"an identified supplier\",\"an invoice reference\",\"specific technical scope or findings\"],\"accepted_host\":\"raw.githubusercontent.com/Hilda26/mandate-vault\",\"reject_if\":[\"the evidence describes marketing or an event\",\"the evidence does not describe completed technical work\",\"the evidence contradicts the proposal purpose\"]}",
+        "evidence_url": "https://raw.githubusercontent.com/Hilda26/mandate-vault/main/live-evidence/compliant-security-review.md",
+        "expires_at": "2026-10-17T07:58:01.313665+00:00",
+        "id": 0,
+        "mandate_snapshot_json": "{\"name\":\"MandateVault security-work budget\",\"objective\":\"Pay for completed independent security review work that directly benefits the MandateVault GenLayer Intelligent Contract.\",\"prohibited\":[\"marketing\",\"advertising\",\"event sponsorship\",\"travel\",\"general-purpose hardware\"],\"conditions\":[\"the public evidence must identify MandateVault\",\"the work must be completed rather than merely proposed\",\"the evidence must state supplier and invoice\",\"the deliverable must describe reviewed technical scope or findings\"]}",
+        "mandate_version": 1,
+        "operator": "0xD2674bc0A4F386EF71E874413D8f172608d76cCe",
+        "purpose_json": "{\"category\":\"security_review\",\"summary\":\"Pay the supplier for its completed independent review of MandateVault's value-routing and state-machine invariants.\",\"invoice\":\"MV-2026-1017\"}",
+        "reason_code": "",
+        "recipient": "0xD40204E290b887644cb1F181d84b783E5Ad281DA",
+        "reviewed_at": "",
+        "settled_at": "",
+        "status": "PENDING",
+        "submitted_at": "2026-10-17T07:28:01.313665+00:00",
+        "vault_id": 0
+      }
+    },
+    {
+      "label": "update-mandate-after-submit",
+      "hash": "0xe94d76fd04099a15e6985164e7e0c6c4845d499b2b0a6a49255c02fb8a46b740",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "review-compliant-proposal",
+      "hash": "0x0b59d973889e025064d071dbfa48a889f4f3d2f5c90034e6aa36d3c528ebdb77",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "submit-prohibited-proposal",
+      "hash": "0x79b95264db59b8b9618d17ce7faa650fb5adb872c658d8a916552f257e7d6d04",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "review-prohibited-proposal",
+      "hash": "0xc10c6d314051006e7f2a467e80ed974957b2a776548e25c0692db664ed15a16f",
+      "statusName": "ACCEPTED",
+      "resultName": "MAJORITY_AGREE",
+      "leaderExecution": "SUCCESS",
+      "stdout": "",
+      "stderr": "",
+      "rawError": null
+    },
+    {
+      "label": "final-get-vault",
+      "vaultId": 0,
+      "vault": {
+        "available_budget": 1,
+        "budget": 3,
+        "closed_at": "",
+        "created_at": "2026-10-17T07:27:51.828810+00:00",
+        "evidence_policy_json": "{\"required\":[\"a public HTTPS deliverable\",\"an identified supplier\",\"an invoice reference\",\"specific technical scope or findings\"],\"accepted_host\":\"raw.githubusercontent.com/Hilda26/mandate-vault\",\"reject_if\":[\"the evidence describes marketing or an event\",\"the evidence does not describe completed technical work\",\"the evidence contradicts the proposal purpose\"]}",
+        "expires_at": "2026-10-17T08:27:51.828810+00:00",
+        "id": 0,
+        "mandate_json": "{\"name\":\"MandateVault security and remediation budget\",\"objective\":\"Pay for completed independent security reviews or verified vulnerability remediation that directly benefits MandateVault.\",\"prohibited\":[\"marketing\",\"advertising\",\"event sponsorship\",\"travel\",\"general-purpose hardware\"],\"conditions\":[\"the public evidence must identify MandateVault\",\"the work must be completed rather than merely proposed\",\"the evidence must state supplier and invoice\",\"the deliverable must describe technical scope, findings, or verified remediation\"]}",
+        "mandate_version": 2,
+        "operator": "0xD2674bc0A4F386EF71E874413D8f172608d76cCe",
+        "per_action_limit": 2,
+        "principal": "0xA6955940de7CBa1b7155245e7C695093261fBBC0",
+        "proposal_bond": 1,
+        "proposal_ttl_seconds": 1800,
+        "reserved": 0,
+        "spent": 2,
+        "state": "ACTIVE"
+      }
+    },
+    {
+      "label": "final-get-good-proposal",
+      "proposalId": 0,
+      "proposal": {
+        "amount": 2,
+        "bond": 1,
+        "evidence_json": "{\"primary_url\":\"https://raw.githubusercontent.com/Hilda26/mandate-vault/main/live-evidence/compliant-security-review.md\",\"supplier\":\"Cipher Review Collective\",\"invoice\":\"MV-2026-1017\",\"public\":true}",
+        "evidence_policy_snapshot_json": "{\"required\":[\"a public HTTPS deliverable\",\"an identified supplier\",\"an invoice reference\",\"specific technical scope or findings\"],\"accepted_host\":\"raw.githubusercontent.com/Hilda26/mandate-vault\",\"reject_if\":[\"the evidence describes marketing or an event\",\"the evidence does not describe completed technical work\",\"the evidence contradicts the proposal purpose\"]}",
+        "evidence_url": "https://raw.githubusercontent.com/Hilda26/mandate-vault/main/live-evidence/compliant-security-review.md",
+        "expires_at": "2026-10-17T07:58:01.313665+00:00",
+        "id": 0,
+        "mandate_snapshot_json": "{\"name\":\"MandateVault security-work budget\",\"objective\":\"Pay for completed independent security review work that directly benefits the MandateVault GenLayer Intelligent Contract.\",\"prohibited\":[\"marketing\",\"advertising\",\"event sponsorship\",\"travel\",\"general-purpose hardware\"],\"conditions\":[\"the public evidence must identify MandateVault\",\"the work must be completed rather than merely proposed\",\"the evidence must state supplier and invoice\",\"the deliverable must describe reviewed technical scope or findings\"]}",
+        "mandate_version": 1,
+        "operator": "0xD2674bc0A4F386EF71E874413D8f172608d76cCe",
+        "purpose_json": "{\"category\":\"security_review\",\"summary\":\"Pay the supplier for its completed independent review of MandateVault's value-routing and state-machine invariants.\",\"invoice\":\"MV-2026-1017\"}",
+        "reason_code": "MANDATE_COMPLIANT",
+        "recipient": "0xD40204E290b887644cb1F181d84b783E5Ad281DA",
+        "reviewed_at": "2026-10-17T07:28:19.078802+00:00",
+        "settled_at": "2026-10-17T07:28:19.078802+00:00",
+        "status": "PAID",
+        "submitted_at": "2026-10-17T07:28:01.313665+00:00",
+        "vault_id": 0
+      }
+    },
+    {
+      "label": "final-get-bad-proposal",
+      "proposalId": 1,
+      "proposal": {
+        "amount": 1,
+        "bond": 1,
+        "evidence_json": "{\"primary_url\":\"https://raw.githubusercontent.com/Hilda26/mandate-vault/main/live-evidence/prohibited-marketing-proposal.md\",\"supplier\":\"LaunchSpark Events\",\"invoice\":\"PARTY-2026-44\",\"public\":true}",
+        "evidence_policy_snapshot_json": "{\"required\":[\"a public HTTPS deliverable\",\"an identified supplier\",\"an invoice reference\",\"specific technical scope or findings\"],\"accepted_host\":\"raw.githubusercontent.com/Hilda26/mandate-vault\",\"reject_if\":[\"the evidence describes marketing or an event\",\"the evidence does not describe completed technical work\",\"the evidence contradicts the proposal purpose\"]}",
+        "evidence_url": "https://raw.githubusercontent.com/Hilda26/mandate-vault/main/live-evidence/prohibited-marketing-proposal.md",
+        "expires_at": "2026-10-17T07:59:04.323734+00:00",
+        "id": 1,
+        "mandate_snapshot_json": "{\"name\":\"MandateVault security and remediation budget\",\"objective\":\"Pay for completed independent security reviews or verified vulnerability remediation that directly benefits MandateVault.\",\"prohibited\":[\"marketing\",\"advertising\",\"event sponsorship\",\"travel\",\"general-purpose hardware\"],\"conditions\":[\"the public evidence must identify MandateVault\",\"the work must be completed rather than merely proposed\",\"the evidence must state supplier and invoice\",\"the deliverable must describe technical scope, findings, or verified remediation\"]}",
+        "mandate_version": 2,
+        "operator": "0xD2674bc0A4F386EF71E874413D8f172608d76cCe",
+        "purpose_json": "{\"category\":\"event_sponsorship\",\"summary\":\"Sponsor a promotional MandateVault launch party with banners, influencers, catering, and merchandise.\",\"invoice\":\"PARTY-2026-44\"}",
+        "reason_code": "PROHIBITED_EXPENSE",
+        "recipient": "0xD40204E290b887644cb1F181d84b783E5Ad281DA",
+        "reviewed_at": "2026-10-17T07:29:31.065229+00:00",
+        "settled_at": "2026-10-17T07:29:31.065229+00:00",
+        "status": "REJECTED",
+        "submitted_at": "2026-10-17T07:29:04.323734+00:00",
+        "vault_id": 0
+      }
+    },
+    {
+      "label": "final-read-counts",
+      "vaultCount": 1,
+      "proposalCount": 2
+    }
+  ]
+}
