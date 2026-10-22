@@ -1,23 +1,27 @@
 # Live StudioNet evidence
 
 The corrected MandateVault build was deployed and exercised on GenLayer
-StudioNet on October 17, 2026.
+StudioNet on October 22, 2026.
 
 ## Contract
 
-- Address: `0x4a79710A4B739698E929b31363720A39834Fb99c`
-- Explorer: `https://explorer-studio.genlayer.com/address/0x4a79710A4B739698E929b31363720A39834Fb99c`
-- Deployment transaction: `0x17b263d8ed6629b3f3975a44307f4583c66caff93edb22a3e72f9e4741544ddc`
+- Address: `0xEd4bF68A72313b373CbC0564c90Af8db763B6fc8`
+- Explorer: `https://explorer-studio.genlayer.com/address/0xEd4bF68A72313b373CbC0564c90Af8db763B6fc8`
+- Deployment transaction: `0xfd2b639bbc2147c99499eddb21e59dfc11f8129e603bd0db439a6229d585b296`
+- Contract source SHA-256: `fded97dd7e73f0ee036fb21fae8efacc827f5322379e00d5659d86198d930bfe`
 
 The deployment finalized `ACCEPTED / MAJORITY_AGREE` with leader execution
 `SUCCESS`, empty stdout/stderr, and no raw error. Live schema retrieval exposed
 all 12 expected public methods.
 
+A `gen_getContractCode` read confirmed the deployed source is byte-for-byte
+identical to `contracts/mandate_vault.py` at fix commit `ca637eb`.
+
 ## Command
 
 ```powershell
 node live_studionet_mandate_tests.mjs `
-  --contract 0x4a79710A4B739698E929b31363720A39834Fb99c `
+  --contract 0xEd4bF68A72313b373CbC0564c90Af8db763B6fc8 `
   --out live-studionet-latest.json
 ```
 
@@ -25,12 +29,12 @@ node live_studionet_mandate_tests.mjs `
 
 | Action | Transaction |
 | --- | --- |
-| Create vault | `0x61cf9ed61077770c7b2807355f12a4c0fa49603fbd0e39e29cb2ddd7415e4442` |
-| Submit compliant proposal | `0x84994177e17008a5dd4a3902c4e524f5838608db4c31c857de10311bc7ee4319` |
-| Update mandate after submission | `0xe94d76fd04099a15e6985164e7e0c6c4845d499b2b0a6a49255c02fb8a46b740` |
-| Review compliant proposal | `0x0b59d973889e025064d071dbfa48a889f4f3d2f5c90034e6aa36d3c528ebdb77` |
-| Submit prohibited proposal | `0x79b95264db59b8b9618d17ce7faa650fb5adb872c658d8a916552f257e7d6d04` |
-| Review prohibited proposal | `0xc10c6d314051006e7f2a467e80ed974957b2a776548e25c0692db664ed15a16f` |
+| Create vault | `0x8670fe63801c413a1ebba00989a631881a38f7cd918ac8134e70aee72f039ba5` |
+| Submit compliant proposal | `0x94f0a79fb4db197c62754390befe20d83ed5d1596eb95e8b9d04d817fc482593` |
+| Update mandate after submission | `0xc230e9eb54dc1f19939a69a569625b7097ab7dd0a9eb726861c24819f2cb32fe` |
+| Review compliant proposal | `0x477212369e483310eff1abf38420987e3ae1cc57c791ba346e4fa6e2266627bc` |
+| Submit prohibited proposal | `0xbe5a4d933e30ba3d905e26abd9c01e8d4825f37082d05de2991e8583623aa560` |
+| Review prohibited proposal | `0xcb85c13a8ed0d94c54636478cb81269259da30314c98227cefbc50521bcef358` |
 
 Every lifecycle receipt returned:
 
@@ -50,6 +54,11 @@ Every lifecycle receipt returned:
 - Budget accounting finished at `budget=3`, `spent=2`, `reserved=0`, and
   `available_budget=1`.
 - On-chain counts finished at one vault and two proposals.
+- The compliant comparative output was exactly
+  `{"compliant": true, "reason_code": "MANDATE_COMPLIANT"}`.
+- The prohibited comparative output was exactly
+  `{"compliant": false, "reason_code": "PROHIBITED_EXPENSE"}`.
+- Neither comparative output contained a timestamp or any scheduling field.
 
 The public evidence fetched by validators is under `live-evidence/`, and the
 full structured receipt/state summary is `live-studionet-latest.json`.

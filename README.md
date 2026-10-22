@@ -99,9 +99,9 @@ deployment-compatibility decision.
 
 ## StudioNet deployment
 
-- Contract: `0x4a79710A4B739698E929b31363720A39834Fb99c`
-- Explorer: `https://explorer-studio.genlayer.com/address/0x4a79710A4B739698E929b31363720A39834Fb99c`
-- Deployment transaction: `0x17b263d8ed6629b3f3975a44307f4583c66caff93edb22a3e72f9e4741544ddc`
+- Contract: `0xEd4bF68A72313b373CbC0564c90Af8db763B6fc8`
+- Explorer: `https://explorer-studio.genlayer.com/address/0xEd4bF68A72313b373CbC0564c90Af8db763B6fc8`
+- Deployment transaction: `0xfd2b639bbc2147c99499eddb21e59dfc11f8129e603bd0db439a6229d585b296`
 - Deployment result: `ACCEPTED`, `MAJORITY_AGREE`, leader `SUCCESS`, empty
   stdout/stderr, and no raw error.
 - `genlayer schema` succeeded and exposed all 12 expected methods.
@@ -114,12 +114,12 @@ mandate to version `2`, proved the first proposal retained its version `1`
 snapshot, paid the compliant proposal, and rejected an explicitly prohibited
 marketing/event proposal.
 
-- Vault creation: `0x61cf9ed61077770c7b2807355f12a4c0fa49603fbd0e39e29cb2ddd7415e4442`
-- Compliant submission: `0x84994177e17008a5dd4a3902c4e524f5838608db4c31c857de10311bc7ee4319`
-- Mandate update: `0xe94d76fd04099a15e6985164e7e0c6c4845d499b2b0a6a49255c02fb8a46b740`
-- Compliant review: `0x0b59d973889e025064d071dbfa48a889f4f3d2f5c90034e6aa36d3c528ebdb77`
-- Prohibited submission: `0x79b95264db59b8b9618d17ce7faa650fb5adb872c658d8a916552f257e7d6d04`
-- Prohibited review: `0xc10c6d314051006e7f2a467e80ed974957b2a776548e25c0692db664ed15a16f`
+- Vault creation: `0x8670fe63801c413a1ebba00989a631881a38f7cd918ac8134e70aee72f039ba5`
+- Compliant submission: `0x94f0a79fb4db197c62754390befe20d83ed5d1596eb95e8b9d04d817fc482593`
+- Mandate update: `0xc230e9eb54dc1f19939a69a569625b7097ab7dd0a9eb726861c24819f2cb32fe`
+- Compliant review: `0x477212369e483310eff1abf38420987e3ae1cc57c791ba346e4fa6e2266627bc`
+- Prohibited submission: `0xbe5a4d933e30ba3d905e26abd9c01e8d4825f37082d05de2991e8583623aa560`
+- Prohibited review: `0xcb85c13a8ed0d94c54636478cb81269259da30314c98227cefbc50521bcef358`
 
 Every receipt returned `ACCEPTED`, `MAJORITY_AGREE`, leader execution
 `SUCCESS`, empty stdout/stderr, and no raw error. Final state:
@@ -128,6 +128,8 @@ Every receipt returned `ACCEPTED`, `MAJORITY_AGREE`, leader execution
 - Proposal `1`: `REJECTED`, reason `PROHIBITED_EXPENSE`, mandate version `2`.
 - Vault `0`: mandate version `2`, `spent=2`, `reserved=0`, `available_budget=1`.
 - Counts: one vault and two proposals.
+- Both comparative outputs contained exactly `compliant` and `reason_code`, with
+  no timestamp or scheduling field.
 
 The complete machine-readable evidence is in `live-studionet-latest.json`.
 
