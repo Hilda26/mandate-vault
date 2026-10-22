@@ -33,7 +33,7 @@ The model never chooses or modifies a recipient or amount.
 3. Submission reserves the exact requested amount, preventing oversubscription.
 4. Anyone may call `review_proposal` before the proposal expires.
 5. Validators fetch `evidence_json.primary_url` and return a bounded compliance
-   decision.
+   decision containing exactly `compliant` and `reason_code`.
 6. A compliant proposal pays its fixed recipient and refunds the operator bond.
 7. A non-compliant proposal releases its reservation and transfers the bond to
    the principal.
@@ -42,6 +42,10 @@ The model never chooses or modifies a recipient or amount.
 9. Pending proposals can be cancelled or expired to release their reservations.
 10. After the vault deadline and after every reservation is released, the
     principal closes the vault and recovers its unspent budget.
+
+Expiry checks and stored settlement times use GenVM's deterministic transaction
+timestamp. The leader/model neither returns nor controls a timestamp, and any
+extra response field makes the review retryable rather than settling funds.
 
 ## Public methods
 
@@ -85,7 +89,7 @@ pytest tests\direct -q
 Current local result:
 
 - GenVM lint and schema validation: passed (`12` methods: `7` write, `5` view).
-- Direct tests: `21 passed`.
+- Direct tests: `23 passed`.
 - StudioNet integration smoke test: passed against the deployment below.
 
 The current dependency is intentionally pinned to the same StudioNet-compatible

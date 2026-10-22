@@ -338,6 +338,43 @@ def test_malformed_decision_marks_errored_keeps_reservation_and_can_retry(
     assert contract.get_vault(vault_id)["reserved"] == 0
 
 
+def test_model_timestamp_is_rejected_and_cannot_control_settlement_time(
+    direct_deploy, direct_vm_with_transfers, direct_alice, direct_bob, direct_owner
+):
+    vm = direct_vm_with_transfers
+    contract = _deploy(direct_deploy, vm, direct_alice)
+    vault_id = _create_vault(contract, vm, direct_alice, direct_bob)
+    proposal_id = _submit(contract, vm, direct_bob, vault_id, direct_owner)
+    proposal = contract.get_proposal(proposal_id)
+    deterministic_review_at = _iso_plus(proposal["submitted_at"], 60)
+    warp_to(vm, deterministic_review_at)
+
+    vm.mock_web(EVIDENCE_PATTERN, {"status": 200, "body": "Audit evidence"})
+    vm.mock_llm(
+        JUDGE_PATTERN,
+        '{"compliant":true,"reason_code":"MANDATE_COMPLIANT",'
+        '"observed_at":"2099-01-01T00:00:00+00:00"}',
+    )
+    contract.review_proposal(proposal_id)
+
+    reviewed = contract.get_proposal(proposal_id)
+    assert reviewed["status"] == "ERRORED"
+    assert reviewed["reviewed_at"] == deterministic_review_at
+    assert reviewed["settled_at"] == ""
+    assert contract.get_vault(vault_id)["reserved"] == 25_000
+    assert vm._balances.get(_addr_bytes(direct_owner), 0) == 0
+
+    vm.clear_mocks()
+    _mock_accept(vm)
+    deterministic_settlement_at = _iso_plus(deterministic_review_at, 1)
+    warp_to(vm, deterministic_settlement_at)
+    contract.review_proposal(proposal_id)
+    paid = contract.get_proposal(proposal_id)
+    assert paid["status"] == "PAID"
+    assert paid["reviewed_at"] == deterministic_settlement_at
+    assert paid["settled_at"] == deterministic_settlement_at
+
+
 def test_principal_or_operator_can_cancel_and_bond_returns_to_operator(
     direct_deploy, direct_vm_with_transfers, direct_alice, direct_bob, direct_owner
 ):
@@ -401,6 +438,30 @@ def test_review_is_blocked_after_proposal_expiry(
     _mock_accept(vm)
     with vm.expect_revert("proposal has expired"):
         contract.review_proposal(proposal_id)
+
+
+def test_model_cannot_backdate_an_expired_review_to_enable_payment(
+    direct_deploy, direct_vm_with_transfers, direct_alice, direct_bob, direct_owner
+):
+    vm = direct_vm_with_transfers
+    contract = _deploy(direct_deploy, vm, direct_alice)
+    vault_id = _create_vault(contract, vm, direct_alice, direct_bob)
+    proposal_id = _submit(contract, vm, direct_bob, vault_id, direct_owner)
+    proposal = contract.get_proposal(proposal_id)
+    warp_to(vm, _iso_plus(proposal["expires_at"], 1))
+
+    vm.mock_web(EVIDENCE_PATTERN, {"status": 200, "body": "Audit evidence"})
+    vm.mock_llm(
+        JUDGE_PATTERN,
+        '{"compliant":true,"reason_code":"MANDATE_COMPLIANT",'
+        '"observed_at":"2000-01-01T00:00:00+00:00"}',
+    )
+    with vm.expect_revert("proposal has expired"):
+        contract.review_proposal(proposal_id)
+
+    assert contract.get_proposal(proposal_id)["status"] == "PENDING"
+    assert contract.get_vault(vault_id)["reserved"] == 25_000
+    assert vm._balances.get(_addr_bytes(direct_owner), 0) == 0
 
 
 def test_close_after_expiry_refunds_only_unspent_budget(

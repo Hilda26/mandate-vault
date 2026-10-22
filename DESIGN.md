@@ -45,8 +45,10 @@ spending more than the vault owns.
 
 Every proposal pins one primary HTTPS evidence URL. The leader fetches it inside
 the nondeterministic round, and validators independently reproduce and compare
-the bounded decision. The fetched page and all JSON fields are explicitly
-treated as untrusted evidence to reduce prompt-injection risk.
+the bounded decision. The response schema is exact: `compliant` and
+`reason_code` are the only permitted fields, so a leader or model cannot attach
+a timestamp or any other settlement input. The fetched page and all JSON fields
+are explicitly treated as untrusted evidence to reduce prompt-injection risk.
 
 A fetch failure or malformed/inconsistent model result is an infrastructure
 failure, not proof of operator misconduct. The proposal becomes `ERRORED`, its
@@ -58,7 +60,13 @@ consensus rejection slashes the bond.
 `review_proposal` records the vault and proposal states before the consensus
 round. Before settlement it checks that neither changed. If cancellation or
 another review already moved the proposal, the stale round becomes a no-op.
-The consensus timestamp must also fall between proposal submission and expiry.
+
+Review eligibility and every recorded review/settlement time come only from
+GenVM's validator-reproduced transaction timestamp (`datetime.now()`), captured
+before the nondeterministic round. Time is absent from the leader response and
+the comparative output. Consequently, the proposal's expiry outcome and any
+resulting transfer are deterministic even if evidence review takes wall-clock
+time.
 
 ## Liveness
 
